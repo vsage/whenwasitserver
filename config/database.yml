@@ -22,8 +22,13 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
-  database: WhenWasItServer_development
+  # <<: *default
+  adapter: postgresql
+  host: localhost
+  username: user
+  database: app-dev
+  password: 2dad246739144fc3adbfedd037b491f77baa4393c0fd1c81138bddec3d7c3969
+  # database: app-dev
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

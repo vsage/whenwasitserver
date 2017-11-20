@@ -7,6 +7,18 @@
     <tr>
       <th>Question</th>
       <th>Category</th>
+      <th>
+        answer
+      </th>
+      <th>
+        answer
+      </th>
+      <th>
+        answer
+      </th>
+      <th>
+        answer
+      </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +28,12 @@
       <tr>
         <td><%= question.question %></td>
         <td><%= question.category %></td>
+        <%question.answers.each do |answer|%>
+          <td>
+            <%= answer.answer %>
+            <%= answer.right %>
+          </td>
+        <%end%>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -61,6 +61,22 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def list
+    list = []
+    questions = Question.where("'"+params[:category]+"' = ANY (categories)").order("RANDOM()").limit(10)
+    questions.each do |q|
+      render_question = Hash.new
+      render_question[:question] = q.question
+      render_question[:category] = params[:category]
+      render_question[:answers] = []
+      q.answers.each do |a|
+        render_question[:answers].push({answer: a.answer, right: a.right})
+      end
+      list.push(render_question)
+    end
+    render json: list
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
